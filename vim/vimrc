@@ -1,0 +1,107 @@
+" Vim configuration, some stuff taken from $VIMRUNTIME/defaults.vim
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set nocompatible
+
+set backspace=indent,eol,start
+
+set history=200
+set ruler
+set showcmd
+set wildmenu
+
+set display=truncate
+
+set scrolloff=0
+set incsearch
+set hlsearch
+set autoindent
+
+set nrformats-=octal
+
+set foldnestmax=1
+set nojoinspaces
+
+set secure
+set modeline
+set modelines=2
+
+set nobackup
+set noundofile
+
+set spelllang=de
+
+if has("gui_running")
+  set guioptions-=mT
+  set guicursor+=a:blinkon0
+endif
+
+" search for tags-file in upper directories
+set tags+=tags;/,ctags;/
+
+syntax on
+
+filetype plugin indent on
+
+" use ag with ack.vim :Ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+" jump to the last cursor position of that file
+autocmd BufReadPost *
+  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  \ |   exe "normal! g`\""
+  \ | endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" commands
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" diff the unsaved file changes
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+		  \ | wincmd p | diffthis
+endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" mappings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" searching the word under the cursor with the silver searcher
+noremap <F3> :Ack <C-R><C-W>
+
+" toggle hybrid line numbering
+noremap <F8> :set nu! rnu!<CR>
+imap <F8> <C-O><F8>
+
+noremap <F9> :windo diffthis<CR>
+noremap <S-F9> diffoff!<CR>
+
+" moving between windows
+noremap <C-H> <C-W>h
+noremap <C-J> <C-W>j
+noremap <C-K> <C-W>k
+noremap <C-L> <C-W>l
+
+" quickfix navigation
+noremap <C-Right> :cnext<CR>
+noremap <C-Left> :cprevious<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" plug-ins
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+packadd! matchit
+
+" loaded from ~/.vim/pack/*/start
+" https://github.com/mileszs/ack.vim
+" https://github.com/ctrlpvim/ctrlp.vim
+" https://github.com/tpope/vim-surround
+" https://www.vim.org/scripts/download_script.php?src_id=19633 (Align)
+" https://www.vim.org/scripts/download_script.php?src_id=19574 (Tag List)
+" https://github.com/will133/vim-dirdiff
+" https://github.com/scrooloose/nerdtree
