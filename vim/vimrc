@@ -35,7 +35,8 @@ set noundofile
 set spelllang=de
 
 if has("gui_running")
-  set guioptions-=mT
+  set guioptions-=T
+  set guioptions-=m
   set guicursor+=a:blinkon0
 endif
 
