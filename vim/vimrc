@@ -49,7 +49,7 @@ filetype plugin indent on
 
 " use ag with ack.vim :Ack
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --nogroup --nocolor --column'
 endif
 
 " jump to the last cursor position of that file
