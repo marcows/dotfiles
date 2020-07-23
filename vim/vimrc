@@ -75,6 +75,8 @@ endif
 " mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+let mapleader = "ß"
+
 " searching the word under the cursor with the silver searcher
 noremap <F3> :Ack <C-R><C-W>
 
@@ -94,6 +96,11 @@ noremap <C-L> <C-W>l
 " quickfix navigation
 noremap <C-Right> :cnext<CR>
 noremap <C-Left> :cprevious<CR>
+
+" TortoiseSVN invocation
+noremap <Leader>l :silent !start tortoiseproc /command:log /path:"%"<CR><ESC>
+noremap <Leader>d :silent !start tortoiseproc /command:diff /path:"%"<CR><ESC>
+noremap <expr> <Leader>b ':silent !start tortoiseproc /command:blame /line:' . line(".") . ' /path:"%"<CR><ESC>'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plug-ins
