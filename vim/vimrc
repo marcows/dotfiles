@@ -102,6 +102,8 @@ noremap <Leader>l :silent !start tortoiseproc /command:log /path:"%"<CR><ESC>
 noremap <Leader>d :silent !start tortoiseproc /command:diff /path:"%"<CR><ESC>
 noremap <expr> <Leader>b ':silent !start tortoiseproc /command:blame /line:' . line(".") . ' /path:"%"<CR><ESC>'
 
+noremap gx :echo "NOTE: gx command disabled because of bug https://github.com/vim/vim/issues/4738"<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " plug-ins
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
